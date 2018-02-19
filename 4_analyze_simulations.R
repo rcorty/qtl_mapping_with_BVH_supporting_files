@@ -231,19 +231,19 @@ my_qq <- function(d) {
 r3 %>%
   filter(test %in% mqtl_test_names, qtl == 'none') %>%
   my_qq()
-if (save_plots) { ggsave(filename = 'mqtl_null_qqs.pdf', height = 7, width = 7) }
+if (save_plots) { ggsave(filename = 'mqtl_null_qqs.pdf', height = 9, width = 7) }
 
 
 r3 %>%
   filter(test %in% vqtl_test_names, qtl == 'none') %>%
   my_qq()
-if (save_plots) { ggsave(filename = 'vqtl_null_qqs.pdf', height = 7, width = 7) }
+if (save_plots) { ggsave(filename = 'vqtl_null_qqs.pdf', height = 9, width = 7) }
 
 
 r3 %>%
   filter(test %in% mvqtl_test_names, qtl == 'none') %>%
   my_qq()
-if (save_plots) { ggsave(filename = 'mvqtl_null_qqs.pdf', height = 5, width = 7) }
+if (save_plots) { ggsave(filename = 'mvqtl_null_qqs.pdf', height = 7, width = 7) }
 
 
 
@@ -283,21 +283,21 @@ mvqtl_tests <- r3 %>% filter(test %in% mvqtl_test_names)
 mqtl_tests %>%
   filter(qtl == 'mqtl') %>%
   bind_rows(mqtl_tests %>% filter(qtl == 'none')) %>%
-  facet_by_test() +
+  facet_by_bvh() +
   ggtitle('mQTL discrimination by test')
-if (save_plots) { ggsave(filename = 'simple_rocs_mqtl_all_facet_by_test.pdf', height = 3.5, width = 13) }
+if (save_plots) { ggsave(filename = 'simple_rocs_mqtl_all_facet_by_bvh.pdf', height = 3.5, width = 7) }
 
 
 vqtl_tests %>%
   filter(qtl == 'vqtl') %>%
   bind_rows(vqtl_tests %>% filter(qtl == 'none')) %>%
-  facet_by_test() +
+  facet_by_bvh() +
   ggtitle('vQTL discrimination by test')
-if (save_plots) { ggsave(filename = 'simple_rocs_vqtl_all_facet_by_test.pdf', height = 3.5, width = 13) }
+if (save_plots) { ggsave(filename = 'simple_rocs_vqtl_all_facet_by_bvh.pdf', height = 3.5, width = 7) }
 
 mvqtl_tests %>%
   filter(qtl == 'mvqtl') %>%
   bind_rows(mvqtl_tests %>% filter(qtl == 'none')) %>%
-  facet_by_test() +
+  facet_by_bvh() +
   ggtitle('mvQTL discrimination by test')
-if (save_plots) { ggsave(filename = 'simple_rocs_mvqtl_all_facet_by_test.pdf', height = 3.5, width = 13) }
+if (save_plots) { ggsave(filename = 'simple_rocs_mvqtl_all_facet_by_bvh.pdf', height = 3.5, width = 7) }
