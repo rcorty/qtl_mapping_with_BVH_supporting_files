@@ -263,13 +263,10 @@ mvqtl_test_names <- c('Cao[mv]', 'DGLM[mv]')
 test_names <- c(mqtl_test_names, vqtl_test_names, mvqtl_test_names)
 
 r3 <- r2 %>%
-  filter(!(grepl(pattern = 'no~covar', x = test) & bvh == 'BVH present'), !(grepl(pattern = ']~covar', x = test) & bvh == 'BVH absent')) %>%
+  filter(!(grepl(pattern = 'no~covar', x = test))) %>%
   mutate(test = as.character(test),
-         test = case_when(test == 'DGLM[m]~no~covar' ~ 'DGLM[m]',
-                          test == 'DGLM[m]~covar' ~ 'DGLM[m]',
-                          test == 'DGLM[v]~no~covar' ~ 'DGLM[v]',
+         test = case_when(test == 'DGLM[m]~covar' ~ 'DGLM[m]',
                           test == 'DGLM[v]~covar' ~ 'DGLM[v]',
-                          test == 'DGLM[mv]~no~covar' ~ 'DGLM[mv]',
                           test == 'DGLM[mv]~covar' ~ 'DGLM[mv]',
                           TRUE ~ test),
          test = factor(test, levels = test_names))
