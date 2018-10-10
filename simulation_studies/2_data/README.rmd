@@ -1,0 +1,37 @@
+---
+title: "Reading Simulated Data"
+author: "Robert W. Corty"
+date: "9/20/2018"
+output: html_document
+---
+
+
+## Data Format
+
+The datasets simulated for the purposes of the manuscript titled "QTL Mapping in the Presence of Foreground and Background Variance Heterogeneity" are presented here.
+
+There are three sizes of datasets
+
+* n = 100 simulations of each scenario
+* n = 1,000 "
+* n = 10,000
+
+Each sized dataset comes in two formats (which contain identical data):
+
+  - .csv
+  - gzipped .RDS
+
+
+## Data Description
+
+Each row of each dataset represents a simulated individual in a QTL mapping study.
+Each column represents some aspect of that individual.
+The columns are:
+
+- sim_idx -- integer -- 1:100, 1:1000, or 1:10000 -- the index of the simulation in which the individual occurs
+- bvh -- logical -- [FALSE, TRUE]-- whether or not background variance heterogeneity (BVH) was present in the simulation in which the individual occurs
+- qtl -- character -- ['none', 'mQTL', 'vQTL', 'mvQTL'] -- which type of QTL was simulated in the simulation in which the individual occurs
+- covar -- integer -- [1, 2, 3, 4, 5] -- which covariate group the individual belongs to
+- locus -- integer -- [-1, 0, 1] -- the single-locus genotype of the individual
+- epsilon -- double -- the environmental residual of the individual, simulated from N(0, 1)
+- phen -- double -- the phenotype of the individual, which combines bvh, qtl, covar, locus, and epsilon based on a location-scale mixture of normals as described in the *Simulation* section of the manuscript.

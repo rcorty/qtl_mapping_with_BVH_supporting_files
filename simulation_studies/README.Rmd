@@ -1,0 +1,28 @@
+---
+title: "Instructions for Replicating Simulation Studies"
+author: "Robert W. Corty"
+date: "9/20/2018"
+output: html_document
+---
+
+This document describes how to replicate the simulation studies portion of the manuscript entitled "QTL Mapping in the Presence of Foreground and Background Variance Heterogeneity".
+
+## Get Simulation Data
+
+There are two ways to get the simulation data.
+
+1. Run 'simulation_studies/1_scripts/1_make_simulation_data.R'
+2. Read any one of the datasets from 'simulation_studies/2_data'.  I recommend you to start with a small one and scale up so you can catch any bugs in the process faster.
+
+## Run simulations
+
+1. Put the simulation data on a SLURM computer cluster.
+2. Put the files 'simulation_studies/1_scripts/2_simulation_manager.R', 'simulation_studies/1_scripts/3_simulation.R', and 'simulation_studies/1_scripts/4_collect_simulation_results.R' on the cluster, all in the same directory.
+3. Change lines 9-11 in 'simulation_studies/1_scripts/2_simulation_manager.R' to reflect the size of the simulation dataset you are using and the number of nodes you wish to use on your SLURM cluster.
+4. Run 'simulation_studies/1_scripts/2_simulation_manager.R'.  You will likely want to use a command similar to 'nohup Rscript simulation_studies/1_scripts/2_simulation_manager.R &'
+5. Monitor your jobs.
+6. If they finished quickly, the automated collector may work and you'll have a new file in 'simulation_studies/3_results'.  If not (typical for long runs), the automated collector often times out.  Change the path on line 5 of 'simulation_studies/1_scripts/4_collect_simulation_results.R' to reflect the path where your interim results are saved (something that starts with '_rslurm' and has the current date in it, usually), and run 'simulation_studies/1_scripts/4_collect_simulation_results.R'.
+7. You can download the result file at this point or continue the analysis on the clutser.
+8. Run 'simulation_studies/1_scripts/5_analyze_simulations.R' to reproduce all the tables and plots in the manuscript (plus some bonus ones that didn't make the cut!)
+
+Happy simulating :)
